@@ -4,18 +4,28 @@ const { Client } = pg;
 import cors from 'cors';
 
 
-import delete.js from './delete.js';
-import get.js from './get.js';
-import post.js from './post.js';
-import put.js from './put.js';
-import getid.js from './geitid.js';
 
+import post from './post.js';
+import put from './put.js';
+const app = express();
+
+const posts = [
+    {
+        id: 1,
+        author: 'Post 1',
+        title: 'Post 1',
+        content : 'Post 1',
+        cover: 'Post 1',
+        date: "2021-10-10 10-10",
+    }
+];
 app.use(express.json());
 app.use(cors());
 
-const PORT = process.env.PORT || 3000;
-const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
 
 app.get('/', (req, res) => res.send('Hello, World!'));
+app.post('/posts', (req,res)=>post(req, res));
+app.put('/posts/:id',(req,res)=> put(req, res));
 app.listen(port, () => { console.log(`Server is running on port ${port}`)});
