@@ -1,1 +1,1 @@
-export default getid.js;
+export default getid;
