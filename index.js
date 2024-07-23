@@ -9,16 +9,6 @@ import post from './post.js';
 import put from './put.js';
 const app = express();
 
-const posts = [
-    {
-        id: 1,
-        author: 'Post 1',
-        title: 'Post 1',
-        content : 'Post 1',
-        cover: 'Post 1',
-        date: "2021-10-10 10-10",
-    }
-];
 app.use(express.json());
 app.use(cors());
 

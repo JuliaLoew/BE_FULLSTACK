@@ -3,22 +3,16 @@ const { Client } = pg;
 
 
 async function put(req, res) {
-    const client = new Client({
-        user: 'ahmed',
-        password: '12345',
-        host: 'localhost',
-        port: 5432,
-        database: 'test'
-    });
+    const client = new Client({connectionString:process.env.PG_URI});
     await client.connect();
     const { id } = req.params;
-    const { author,title, content,cover,date } = req.body;
+    const { title, content,cover,author } = req.body;
     
 
   try {
     const result = await client.query(
-      'UPDATE posts SET author=$1 ,title = $2, content = $3 , cover=$4 ,date= $5 WHERE id = $6 RETURNING *',
-      [author,title, content,cover,date, id]
+      'UPDATE fullstack SET title = $1 ,content = $2 , cover=$3 ,author=$4  WHERE id = $5 RETURNING *',
+      [title, content,cover,author ,id]
     );
     
     if (result.rows.length === 0) {
