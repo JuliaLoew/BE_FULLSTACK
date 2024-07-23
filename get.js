@@ -1,3 +1,8 @@
+import pg from 'pg';
+import { Client } from 'pg';
+
+const { Client } = pg; 
+
 async function getAllPosts(req, res) {
     try {
         const result = await Client.query('SELECT * FROM posts');

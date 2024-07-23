@@ -1,3 +1,8 @@
+import pg from 'pg';
+import { Client } from 'pg';
+
+const { Client } = pg;
+
 async function getPostsbyId (req, res) {
     const {id} = req.params;
     try {
