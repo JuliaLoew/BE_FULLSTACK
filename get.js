@@ -1,11 +1,11 @@
 import pg from 'pg';
-import { Client } from 'pg';
-
 const { Client } = pg; 
 
 async function getAllPosts(req, res) {
+    const client = new Client({connectionString:process.env.PG_URI});
+    await client.connect();
     try {
-        const result = await Client.query('SELECT * FROM posts');
+        const result = await client.query('SELECT * FROM fullstack');
         res.status(200).json(result.rows);
     } catch (error) {
         console.error(error);
